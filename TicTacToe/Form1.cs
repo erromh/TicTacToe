@@ -25,7 +25,18 @@ namespace TicTacToe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            button1.Image = Image.FromFile("C:\\Users\\user\\Desktop\\img\\xx.png");
+            button1.Image = Image.FromFile("D:\\c++++\\TicTacToe\\TicTacToe\\img\\xx.png");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            button2.Image = Image.FromFile("D:\\c++++\\TicTacToe\\TicTacToe\\img\\CCC.png");
+        }
+
+        private void Check_item()
+        {
+            bool[,] items = new bool[3, 3];
+            
         }
     }
 }
