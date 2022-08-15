@@ -25,7 +25,7 @@ namespace TicTacToe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            button1.Image = Image.FromFile("D:\\c++++\\TicTacToe\\TicTacToe\\img\\xx.png");
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -35,7 +35,6 @@ namespace TicTacToe
 
         private void Check_item()
         {
-            
             
         }
     }
