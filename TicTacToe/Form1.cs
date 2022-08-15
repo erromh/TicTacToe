@@ -35,7 +35,7 @@ namespace TicTacToe
 
         private void Check_item()
         {
-            bool[,] items = new bool[3, 3];
+            
             
         }
     }
