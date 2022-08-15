@@ -15,7 +15,6 @@ namespace TicTacToe
         public Form1()
         {
             InitializeComponent();
-           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -23,17 +22,12 @@ namespace TicTacToe
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            button2.Image = Image.FromFile("D:\\c++++\\TicTacToe\\TicTacToe\\img\\CCC.png");
+            
         }
 
-        private void Check_item()
+        private void button1_Click(object sender, EventArgs e)
         {
             
         }
