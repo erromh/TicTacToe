@@ -40,15 +40,108 @@ namespace TicTacToe
             }
             sender.GetType().GetProperty("Enabled").SetValue(sender, false);
             check_winner();
+            show_move();
         }
 
-        private void check_winner()
-        {
-            if (button1.Text==button2.Text && button2.Text == button3.Text)
+        private void show_move()
+        { 
+            if (player != 1) 
             {
-                MessageBox.Show("You win");
+                label3.Text = "-";
+                label4.Text = "+";
+
+            }
+            else
+            {
+                label3.Text = "+";
+                label4.Text = "-";
             }
 
+        }
+        private void check_winner()
+        {
+            // условия выирыша по гориизонтали
+            if (button1.Text==button2.Text && button2.Text == button3.Text)
+            {
+                if (button1.Text != "")
+                {
+                    MessageBox.Show("You win");
+                    return;
+                }
+            }
+
+            if (button4.Text == button5.Text && button5.Text == button6.Text)
+            {
+                if (button4.Text != "")
+                {
+                    MessageBox.Show("You win");
+                    return;
+                }
+            }
+
+            if (button7.Text == button8.Text && button8.Text == button9.Text)
+            {
+                if (button7.Text != "")
+                {
+                    MessageBox.Show("You win");
+                    return;
+                }
+            }
+
+            // условия выигрыша по диагонали 
+            if (button1.Text == button5.Text && button5.Text == button9.Text)
+            {
+                if (button1.Text != "")
+                {
+                    MessageBox.Show("You win");
+                    return;
+                }
+            }
+
+            if (button3.Text == button5.Text && button5.Text == button7.Text)
+            {
+                if (button3.Text != "")
+                {
+                    MessageBox.Show("You win");
+                    return;
+                }
+            }
+
+            // условия выигрыша по вертикали 
+            if (button1.Text == button4.Text && button4.Text == button7.Text)
+            {
+                if (button1.Text != "")
+                {
+                    MessageBox.Show("You win");
+                    return;
+                }
+            }
+
+            if (button2.Text == button5.Text && button5.Text == button8.Text)
+            {
+                if (button2.Text != "")
+                {
+                    MessageBox.Show("You win");
+                    return;
+                }
+            }
+
+            if (button3.Text == button6.Text && button6.Text == button9.Text)
+            {
+                if (button3.Text != "")
+                {
+                    MessageBox.Show("You win");
+                    return;
+                }
+            }
+
+
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

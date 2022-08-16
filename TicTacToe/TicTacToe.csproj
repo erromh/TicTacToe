@@ -32,6 +32,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icons8-geometry-dash-32.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -88,6 +94,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zzz1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="-iso_90582.ico" />
+    <Content Include="icons8-geometry-dash-32.ico" />
+    <Content Include="icons8-geometry-dash-64.ico" />
+    <None Include="Resources\icons8-ui-64.png" />
+    <None Include="Resources\icons8-ui-64 %281%29.png" />
+    <None Include="Resources\icons8.png" />
+    <None Include="Resources\icons8-ui-.png" />
+    <None Include="Resources\icons81.png" />
+    <None Include="Resources\icons8-ui-1.png" />
+    <Content Include="so_982.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
