@@ -48,8 +48,8 @@ namespace TicTacToe
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -257,6 +257,18 @@ namespace TicTacToe
             this.label1.TabIndex = 11;
             this.label1.Text = "X";
             // 
+            // button10
+            // 
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button10.Image = global::TicTacToe.Properties.Resources.icons81;
+            this.button10.Location = new System.Drawing.Point(3, 697);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(307, 69);
+            this.button10.TabIndex = 13;
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // button11
             // 
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -268,17 +280,6 @@ namespace TicTacToe
             this.button11.TabIndex = 12;
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button10
-            // 
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button10.Image = global::TicTacToe.Properties.Resources.icons81;
-            this.button10.Location = new System.Drawing.Point(3, 697);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(307, 69);
-            this.button10.TabIndex = 13;
-            this.button10.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
