@@ -21,6 +21,7 @@ namespace TicTacToe
         {
             Form1 NewForm = new Form1();
             NewForm.Show();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
