@@ -26,6 +26,7 @@ namespace TicTacToe
                 }
             }
             setButton();
+            CalculateBestMove(buttons);
             
         }
 
@@ -48,7 +49,7 @@ namespace TicTacToe
         private void button1_Click(object sender, EventArgs e)
         {
             sender.GetType().GetProperty("Text").SetValue(sender, "X");
-           // CalculateBestMove(buttons);
+            
         }
 
         private void checkWin()
@@ -150,14 +151,14 @@ namespace TicTacToe
             {
                 int best = -100;
 
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    for (int j = 0; j < 8; j++)
+                    for (int j = 0; j < 3; j++)
                     {
                         if (buttons[i, j].Text == "")
                         {
                             buttons[i, j].Text = "O";
-                            best = Math.Max(best, MinMax(buttons, !isMax));
+                            best = Math.Max(best, MinMax(buttons, isMax));
                             buttons[i, j].Text = "";
                         }
                     }
@@ -174,7 +175,7 @@ namespace TicTacToe
                     for (int j = 0; j < 8; j++)
                     {
                         buttons[i, j].Text = "X";
-                        best = Math.Min(best, MinMax(buttons, !isMax));
+                        best = Math.Min(best, MinMax(buttons, isMax));
                         buttons[i, j].Text = "";
                     }
                 }
@@ -216,7 +217,7 @@ namespace TicTacToe
                 {
                     buttons[i, j].Text = "O";
                     int moveValue = MinMax(buttons, false);
-                    //buttons[i, j].Text = "";
+                    buttons[i, j].Text = "";
 
                     if (moveValue > bestValue) 
                     {
@@ -228,6 +229,7 @@ namespace TicTacToe
 
             return aiMove;
         }
+
 
         private void Form3_Load(object sender, EventArgs e)
         {
