@@ -20,14 +20,14 @@ namespace TicTacToe
         private void button1_Click(object sender, EventArgs e)
         {
             Form1 NewForm = new Form1();
-            NewForm.Show();
+            NewForm.ShowDialog();
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Form3 newform = new Form3();
-            newform.Show();
+            newform.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
