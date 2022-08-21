@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
 namespace TicTacToe
 {
     public class AI3x3
@@ -15,6 +13,7 @@ namespace TicTacToe
         static int calculateBestMove(char[] board)
         {
             int bestValue = -100;
+
             AI3x3 aiMove = new AI3x3();
 
             for (int i = 0; i < 9; i++)
@@ -24,8 +23,6 @@ namespace TicTacToe
                     board[i] = 'o';
                     int moveValue = Minimax(board, false);
                     board[i] = 'z';
-
-
 
                     if (moveValue > bestValue)
                     {
@@ -97,6 +94,7 @@ namespace TicTacToe
                 }
                 return best;
             }
+
             else
             {
                 int best = 100;
@@ -115,13 +113,6 @@ namespace TicTacToe
 
         }
 
-        
     }
-
-
-
-
-
-
 
 }
