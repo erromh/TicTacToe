@@ -34,5 +34,11 @@ namespace TicTacToe
         {
             this.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form5 nnewFofm = new Form5();
+            nnewFofm.ShowDialog();
+        }
     }
 }
