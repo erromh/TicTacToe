@@ -45,9 +45,28 @@ namespace TicTacToe
             }
         }
 
+       
+
         private void button1_Click(object sender, EventArgs e)
         {
             sender.GetType().GetProperty("Text").SetValue(sender, "x");
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    buttons[i, j].Text = "";
+                    buttons[i, j].Enabled = true;
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

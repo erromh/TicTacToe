@@ -27,7 +27,7 @@ namespace TicTacToe
             }
             setButton();
             CalculateBestMove(buttons);
-            
+            checkWin();
         }
 
         private void setButton()
