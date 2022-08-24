@@ -52,7 +52,7 @@ namespace TicTacToe
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form3";
-            this.Text = "Form3";
+            this.Text = "TicTacToe";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
 

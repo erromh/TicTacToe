@@ -76,14 +76,21 @@ namespace TicTacToe
 
             if (buttons[2, 0].Text == buttons[2, 1].Text && buttons[2, 1].Text == buttons[2, 2].Text)
             {
-                if (buttons[2, 0].Text != "")
+                if (buttons[2, 0].Text != "") 
+                { 
                     MessageBox.Show("You win");
+                    return;
+                }
+
             }
 
             if (buttons[0, 0].Text == buttons[1, 0].Text && buttons[1, 0].Text == buttons[2, 0].Text)
             {
                 if (buttons[0, 0].Text != "")
+                { 
                     MessageBox.Show("You win");
+                    return;
+                }
             }
 
             if (buttons[0, 1].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[2, 1].Text)
@@ -115,9 +122,9 @@ namespace TicTacToe
 
         static bool isEmptyCellsLeft(Button[,] buttons)
         {
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 3; i++)
             {
-                for (int j = 0; j < 8; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     if (buttons[i, j].Text == "")
                     {
