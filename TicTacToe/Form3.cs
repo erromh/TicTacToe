@@ -13,13 +13,9 @@ namespace TicTacToe
     public partial class Form3 : Form
     {
 
-
-
         private Button[,] buttons = new Button[3, 3];
         public Form3()
         {
-            
-
             InitializeComponent();
 
             for (int i = 0; i < buttons.Length / 3; i++)
@@ -32,11 +28,10 @@ namespace TicTacToe
                 }
             }
             setButton();
-
-            
         }
 
-        public class AiMove {
+        public class AiMove 
+        {
             public int pointI;
             public int pointJ;
         }
@@ -69,6 +64,7 @@ namespace TicTacToe
             checkWin();
             makeAiTurn(buttons);
             checkWin();
+            
         }
 
         static void makeAiTurn(Button[,] buttons)
@@ -78,22 +74,23 @@ namespace TicTacToe
                 AiMove aiMove = calculateBestMove(buttons);
                 buttons[aiMove.pointI, aiMove.pointJ].Text = "O";
                 buttons[aiMove.pointI, aiMove.pointJ].Enabled = false;
-                
             }
-            
-
-            
         } 
 
         private void checkWin()
         {
-
             if (buttons[0, 0].Text == buttons[0, 1].Text && buttons[0, 1].Text == buttons[0, 2].Text)
             {
 
                 if (buttons[0, 0].Text == "X")
                 {
                     MessageBox.Show("You win");
+                    return;
+                }
+
+                else if (buttons[0, 0].Text == "O")
+                {
+                    MessageBox.Show("You lose");
                     return;
                 }
             }
@@ -105,6 +102,12 @@ namespace TicTacToe
                     MessageBox.Show("You win");
                     return;
                 }
+
+                else if (buttons[1, 0].Text == "O")
+                {
+                    MessageBox.Show("You lose");
+                    return;
+                }
             }
 
             if (buttons[2, 0].Text == buttons[2, 1].Text && buttons[2, 1].Text == buttons[2, 2].Text)
@@ -113,8 +116,8 @@ namespace TicTacToe
                 { 
                     MessageBox.Show("You win");
                     return;
-
                 }
+
                 else if (buttons[2, 0].Text == "O")
                 {
                     MessageBox.Show("You lose");
@@ -130,6 +133,7 @@ namespace TicTacToe
                     MessageBox.Show("You win");
                     return;
                 }
+
                 else if(buttons[0, 0].Text == "O")
                 {
                     MessageBox.Show("You lose");
@@ -140,7 +144,11 @@ namespace TicTacToe
             if (buttons[0, 1].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[2, 1].Text)
             {
                 if (buttons[0, 1].Text == "X")
+                {
                     MessageBox.Show("You win");
+                    return;
+                }
+
                 else if (buttons[0, 1].Text == "O")
                 {
                     MessageBox.Show("You lose");
@@ -151,7 +159,11 @@ namespace TicTacToe
             if (buttons[0, 2].Text == buttons[1, 2].Text && buttons[1, 2].Text == buttons[2, 2].Text)
             {
                 if (buttons[0, 2].Text == "X")
+                {
                     MessageBox.Show("You win");
+                    return;
+                }
+
                 else if (buttons[0, 2].Text == "O")
                 {
                     MessageBox.Show("You lose");
@@ -162,7 +174,11 @@ namespace TicTacToe
             if (buttons[0, 0].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[2, 2].Text)
             {
                 if (buttons[0, 0].Text == "X")
+                {
                     MessageBox.Show("You win");
+                    return;
+                }
+
                 else if (buttons[0, 0].Text == "O")
                 {
                     MessageBox.Show("You lose");
@@ -173,7 +189,11 @@ namespace TicTacToe
             if (buttons[2, 0].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[0, 2].Text)
             {
                 if (buttons[2, 0].Text == "X")
+                {
                     MessageBox.Show("You win");
+                    return;
+                }
+
                 else if (buttons[2, 0].Text == "O")
                 {
                     MessageBox.Show("You lose");
@@ -182,7 +202,16 @@ namespace TicTacToe
             }
         }
 
-
+        void turnOffTheButtons(Button[,] buttons)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    buttons[i, j].Enabled = false;
+                }
+            }
+        }
 
         static bool isEmptyCellsLeft(Button[,] buttons)
         {
@@ -234,14 +263,6 @@ namespace TicTacToe
                             {
                                 return value;
                             }
-
-
-
-
-
-
-
-
                         }
                     }
 
@@ -265,26 +286,17 @@ namespace TicTacToe
                             value = Math.Min(value, minmax(buttons, isMax, alpha, beta));
                             buttons[i, j].Text = "";
 
-
                             if (value <= alpha)
                             {
                                 return value;
                             }
 
-
-
                             if (value < beta)
                             {
                                 beta = value;
                             }
-
                         }
-
-
-
-
                     }
-
                 }
                 return value;
             }
@@ -335,7 +347,6 @@ namespace TicTacToe
                             bestValue = moveValue;
                         }
                     }
-                    
                 }
             }
 
