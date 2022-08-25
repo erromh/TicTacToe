@@ -12,9 +12,14 @@ namespace TicTacToe
 {
     public partial class Form3 : Form
     {
+
+
+
         private Button[,] buttons = new Button[3, 3];
         public Form3()
         {
+            
+
             InitializeComponent();
 
             for (int i = 0; i < buttons.Length / 3; i++)
@@ -23,11 +28,17 @@ namespace TicTacToe
                 {
                     buttons[i, j] = new Button();
                     buttons[i, j].Size = new Size(150, 150);
+                    
                 }
             }
             setButton();
-            CalculateBestMove(buttons);
-            checkWin();
+
+            
+        }
+
+        public class AiMove {
+            public int pointI;
+            public int pointJ;
         }
 
         private void setButton()
@@ -40,17 +51,39 @@ namespace TicTacToe
                     buttons[i, j].Click += button1_Click;
                     buttons[i, j].Font = new Font(new FontFamily("Microsoft Sans Serif"), 100);
                     buttons[i, j].TextAlign = ContentAlignment.TopCenter;
-
+                    buttons[i, j].Text = "";
                     this.Controls.Add(buttons[i, j]);
-
+                    
+                     
                 }
             }
         }
+
+
+
         private void button1_Click(object sender, EventArgs e)
         {
-            sender.GetType().GetProperty("Text").SetValue(sender, "X");
-            
+            var button = (Button)sender;
+            button.Text = "X";
+            button.Enabled = false;
+            checkWin();
+            makeAiTurn(buttons);
+            checkWin();
         }
+
+        static void makeAiTurn(Button[,] buttons)
+        {
+            if (isEmptyCellsLeft(buttons))
+            {
+                AiMove aiMove = calculateBestMove(buttons);
+                buttons[aiMove.pointI, aiMove.pointJ].Text = "O";
+                buttons[aiMove.pointI, aiMove.pointJ].Enabled = false;
+                
+            }
+            
+
+            
+        } 
 
         private void checkWin()
         {
@@ -58,7 +91,7 @@ namespace TicTacToe
             if (buttons[0, 0].Text == buttons[0, 1].Text && buttons[0, 1].Text == buttons[0, 2].Text)
             {
 
-                if (buttons[0, 0].Text != "")
+                if (buttons[0, 0].Text == "X")
                 {
                     MessageBox.Show("You win");
                     return;
@@ -67,7 +100,7 @@ namespace TicTacToe
 
             if (buttons[1, 0].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[1, 2].Text)
             {
-                if (buttons[1, 0].Text != "")
+                if (buttons[1, 0].Text == "X")
                 {
                     MessageBox.Show("You win");
                     return;
@@ -76,9 +109,15 @@ namespace TicTacToe
 
             if (buttons[2, 0].Text == buttons[2, 1].Text && buttons[2, 1].Text == buttons[2, 2].Text)
             {
-                if (buttons[2, 0].Text != "") 
+                if (buttons[2, 0].Text == "X") 
                 { 
                     MessageBox.Show("You win");
+                    return;
+
+                }
+                else if (buttons[2, 0].Text == "O")
+                {
+                    MessageBox.Show("You lose");
                     return;
                 }
 
@@ -86,35 +125,60 @@ namespace TicTacToe
 
             if (buttons[0, 0].Text == buttons[1, 0].Text && buttons[1, 0].Text == buttons[2, 0].Text)
             {
-                if (buttons[0, 0].Text != "")
+                if (buttons[0, 0].Text == "X")
                 { 
                     MessageBox.Show("You win");
+                    return;
+                }
+                else if(buttons[0, 0].Text == "O")
+                {
+                    MessageBox.Show("You lose");
                     return;
                 }
             }
 
             if (buttons[0, 1].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[2, 1].Text)
             {
-                if (buttons[0, 1].Text != "")
+                if (buttons[0, 1].Text == "X")
                     MessageBox.Show("You win");
+                else if (buttons[0, 1].Text == "O")
+                {
+                    MessageBox.Show("You lose");
+                    return;
+                }
             }
 
             if (buttons[0, 2].Text == buttons[1, 2].Text && buttons[1, 2].Text == buttons[2, 2].Text)
             {
-                if (buttons[0, 2].Text != "")
+                if (buttons[0, 2].Text == "X")
                     MessageBox.Show("You win");
+                else if (buttons[0, 2].Text == "O")
+                {
+                    MessageBox.Show("You lose");
+                    return;
+                }
             }
 
             if (buttons[0, 0].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[2, 2].Text)
             {
-                if (buttons[0, 0].Text != "")
+                if (buttons[0, 0].Text == "X")
                     MessageBox.Show("You win");
+                else if (buttons[0, 0].Text == "O")
+                {
+                    MessageBox.Show("You lose");
+                    return;
+                }
             }
 
             if (buttons[2, 0].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[0, 2].Text)
             {
-                if (buttons[2, 0].Text != "")
+                if (buttons[2, 0].Text == "X")
                     MessageBox.Show("You win");
+                else if (buttons[2, 0].Text == "O")
+                {
+                    MessageBox.Show("You lose");
+                    return;
+                }
             }
         }
 
@@ -135,58 +199,94 @@ namespace TicTacToe
             return false;
         }
 
-        static int MinMax(Button[,] buttons, bool isMax)
+        static int minmax(Button[,] buttons, Boolean isMax, int alpha, int beta)
         {
             int score = evaluate(buttons);
 
-            if (score == 10)
-            {
-                return score;
-            }
-
-            if (score == -10)
-            {
-                return score;
-            }
-
+            if (score == 10) return score;
+            if (score == -10) return score;
             if (isEmptyCellsLeft(buttons) == false)
-            {
                 return 0;
-            }
 
+
+            
             if (isMax)
             {
-                int best = -100;
-
+                int value = -1000;
                 for (int i = 0; i < 3; i++)
                 {
+
                     for (int j = 0; j < 3; j++)
                     {
                         if (buttons[i, j].Text == "")
                         {
                             buttons[i, j].Text = "O";
-                            best = Math.Max(best, MinMax(buttons, isMax));
+                            value = Math.Max(value, minmax(buttons, !isMax, alpha, beta));
                             buttons[i, j].Text = "";
+
+                            if (beta <= alpha)
+                            {
+                                break;
+                            }
+
+
+                            if (value >= beta)
+                            {
+                                return value;
+                            }
+
+
+
+
+
+
+
+
                         }
                     }
+
                 }
-                return best;
+                return value;
             }
+
 
             else
             {
-                int best = 100;
+                int value = 1000;
 
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    for (int j = 0; j < 8; j++)
+
+                    for (int j = 0; j < 3; j++)
                     {
-                        buttons[i, j].Text = "X";
-                        best = Math.Min(best, MinMax(buttons, isMax));
-                        buttons[i, j].Text = "";
+                        if (buttons[i, j].Text == "")
+                        {
+                            buttons[i, j].Text = "X";
+                            value = Math.Min(value, minmax(buttons, isMax, alpha, beta));
+                            buttons[i, j].Text = "";
+
+
+                            if (value <= alpha)
+                            {
+                                return value;
+                            }
+
+
+
+                            if (value < beta)
+                            {
+                                beta = value;
+                            }
+
+                        }
+
+
+
+
                     }
+
                 }
-                return best;
+                return value;
             }
 
         }
@@ -202,7 +302,7 @@ namespace TicTacToe
                 buttons[0, 0].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[2, 2].Text ||
                 buttons[2, 0].Text == buttons[1, 1].Text && buttons[1, 1].Text == buttons[0, 2].Text)
             {
-                return +10;
+                return 10;
             }
 
             else
@@ -212,25 +312,30 @@ namespace TicTacToe
 
         }
 
-        static int CalculateBestMove(Button[,] buttons)
+        static AiMove calculateBestMove(Button[,] buttons)
         {
             int bestValue = -100;
-
-            int aiMove = 0;
+            AiMove aiMove = new AiMove();
 
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    buttons[i, j].Text = "O";
-                    int moveValue = MinMax(buttons, false);
-                    buttons[i, j].Text = "";
 
-                    if (moveValue > bestValue) 
+                    if(buttons[i, j].Text == "")
                     {
-                        aiMove = i;
-                        bestValue = moveValue;
+                        buttons[i, j].Text = "O";
+                        int moveValue = minmax(buttons, false, 1000, -1000);
+                        buttons[i, j].Text = "";
+
+                        if (moveValue > bestValue)
+                        {
+                            aiMove.pointI = i;
+                            aiMove.pointJ = j;
+                            bestValue = moveValue;
+                        }
                     }
+                    
                 }
             }
 
@@ -239,6 +344,11 @@ namespace TicTacToe
 
 
         private void Form3_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
